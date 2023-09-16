@@ -1,5 +1,6 @@
 %% new data processing main
 % April 18th, 2023
+% Sept 16th, 2023
 
 % DESIRED UPDATE: for now, just want to look at gait data (not side lunges)
 
@@ -53,20 +54,20 @@ for i = 1:1:length(subject)-1
     Sdir = ['./' subject{i} '/ShoesExcel/'];
     % LEFT SIDE
     % force
-    S_walk_L_files.force = dir([Sdir '*WalkingLeft*_force.csv']);
+    S_walk_L_files.force = dir([Sdir 'S*WalkingLeft*_force.csv']);
     % // change this side lunges to lunge*
-    S_SS_L_files.force = dir([Sdir '*SideLunge*Left*_force.csv']);
+    S_SS_L_files.force = dir([Sdir 'S*SideLunge*Left*_force.csv']);
     % vicon
-    S_walk_L_files.vicon = dir([Sdir '*WalkingLeft*_vicon.csv']);
-    S_SS_L_files.vicon = dir([Sdir '*SideLunge*Left*_vicon.csv']);
+    S_walk_L_files.vicon = dir([Sdir 'S*WalkingLeft*_vicon.csv']);
+    S_SS_L_files.vicon = dir([Sdir 'S*SideLunge*Left*_vicon.csv']);
 
     % RIGHT SIDE
     %force
-    S_walk_R_files.force = dir([Sdir '*WalkingRight*_force.csv']);
-    S_SS_R_files.force = dir([Sdir '*SideLunge*Right*_force.csv']);
+    S_walk_R_files.force = dir([Sdir 'S*WalkingRight*_force.csv']);
+    S_SS_R_files.force = dir([Sdir 'S*SideLunge*Right*_force.csv']);
     % vicon
-    S_walk_R_files.vicon = dir([Sdir '*WalkingRight*_vicon.csv']);
-    S_SS_R_files.vicon = dir([Sdir '*SideLunge*Right*_vicon.csv']);
+    S_walk_R_files.vicon = dir([Sdir 'S*WalkingRight*_vicon.csv']);
+    S_SS_R_files.vicon = dir([Sdir 'S*SideLunge*Right*_vicon.csv']);
     
     %% set up import options for all force data using a sample file
     opts = detectImportOptions([Sdir S_walk_L_files.force(1).name]);
@@ -94,18 +95,18 @@ close all
     ORdir = ['./' subject{i} '/OrthoticsExcel/'];
     % LEFT SIDE
     % force
-    OR_walk_L_files.force = dir([ORdir '*WalkingLeft*_force.csv']);
+    OR_walk_L_files.force = dir([ORdir 'O*WalkingLeft*_force.csv']);
 %     OR_SS_L_files.force = dir([ORdir '*SideLungesLeft*_force.csv']);
     % vicon
-    OR_walk_L_files.vicon = dir([ORdir '*WalkingLeft*_vicon.csv']);
+    OR_walk_L_files.vicon = dir([ORdir 'O*WalkingLeft*_vicon.csv']);
 %     OR_SS_L_files.vicon = dir([ORdir '*SideLungesLeft*_vicon.csv']);
 
     % RIGHT SIDE
     %force
-    OR_walk_R_files.force = dir([ORdir '*WalkingRight*_force.csv']);
+    OR_walk_R_files.force = dir([ORdir 'O*WalkingRight*_force.csv']);
 %     OR_SS_R_files.force = dir([ORdir '*SideLungesRight*_force.csv']);
     % vicon
-    OR_walk_R_files.vicon = dir([ORdir '*WalkingRight*_vicon.csv']);
+    OR_walk_R_files.vicon = dir([ORdir 'O*WalkingRight*_vicon.csv']);
 %     OR_SS_R_files.vicon = dir([ORdir '*SideLungesRight*_vicon.csv']);
 
     %% parse and plot orthotics data
@@ -125,18 +126,19 @@ close all
     BFdir = ['./' subject{i} '/BarefootExcel/'];
     % LEFT SIDE
     % force
-    BF_walk_L_files.force = dir([BFdir '*WalkingLeft*_force.csv']);
+    % SEPT 16 DEBUG CHANGES HERE TO SKIP the files that start with "._" 
+    BF_walk_L_files.force = dir([BFdir 'B*WalkingLeft*_force.csv']);
 %     BF_SS_L_files.force = dir([BFdir '*SideLungesLeft*_force.csv']);
     % vicon
-    BF_walk_L_files.vicon = dir([BFdir '*WalkingLeft*_vicon.csv']);
+    BF_walk_L_files.vicon = dir([BFdir 'B*WalkingLeft*_vicon.csv']);
 %     BF_SS_L_files.vicon = dir([BFdir '*SideLungesLeft*_vicon.csv']);
 
     % RIGHT SIDE
     %force
-    BF_walk_R_files.force = dir([BFdir '*WalkingRight*_force.csv']);
+    BF_walk_R_files.force = dir([BFdir 'B*WalkingRight*_force.csv']);
 %     BF_SS_R_files.force = dir([BFdir '*SideLungesRight*_force.csv']);
     % vicon
-    BF_walk_R_files.vicon = dir([BFdir '*WalkingRight*_vicon.csv']);
+    BF_walk_R_files.vicon = dir([BFdir 'B*WalkingRight*_vicon.csv']);
 %     BF_SS_R_files.vicon = dir([BFdir '*SideLungesRight*_vicon.csv']);
 a=2;
     %% parse and plot barefoot data
